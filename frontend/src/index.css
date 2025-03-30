@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Dai+Banna+SIL:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navMobile {
+  opacity: 0;
+  transform: translateX(
+    100%
+  ); /* Start from outside the viewport to the right */
+  animation: fadeInRight 1s forwards; /* Animation duration and fill mode */
+}
+
+@keyframes fadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0); /* Move to the original position (0%) */
+  }
+}
+
+/* Fade out to the right */
+.navMobile.hide {
+  display: none;
+  animation: fadeOutRight 1s forwards; /* Animation duration and fill mode */
+}
+
+@keyframes fadeOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0); /* Move to the original position (0%) */
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%); /* Move outside the viewport to the right */
+  }
+}
+
+.fade-in {
+  opacity: 0; /* Start with opacity 0 (fully transparent) */
+  animation: fadeIn 1s forwards; /* Animation duration and fill mode */
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1; /* Move to opacity 1 (fully visible) */
+  }
+}
+
+.headerImage {
+  background: url("../HeaderDog.png") bottom;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Add a div under the brand identity and add the background image to that instead */
+
+.fade-in-right-bg {
+  position: relative;
+  display: inline-block;
+  transition: background-color 0.5s;
+}
+
+.fade-in-right-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  transition: background-color 0.5s;
+  z-index: -1;
+}
+
+.fade-in-right-bg:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.fade-in-right-bg:hover::before {
+  right: 0;
+}
+
+.body1 {
+  background: url("../body1.jpg") center;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.body2 {
+  background: url("../body2.jpg") center;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.body3 {
+  background: url("../body3.jpg") center;
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 768px) {
+  .body1 {
+    background-position: -900px center; /* Move body1 150px to the left */
+  }
+
+  .body2 {
+    background-position: -190px center; /* Move body2 250px to the right */
+  }
+
+  .body3 {
+    background-position: -1000px center; /* Move body3 300px to the left */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .headerImage,
+  .body1,
+  .body2,
+  .body3 {
+    background-attachment: fixed;
+  }
+}
+
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: transparent;
+  border-radius: 50%;
+}
+
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: transparent;
+  width: 36px;
+  height: 36px;
+}
+
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: transparent;
+  width: 20px;
+  height: 20px;
+  animation: spin89345 1s linear infinite;
+}
+
+@keyframes spin89345 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory; /* Enable horizontal snap */
+  scroll-behavior: smooth; /* Enable smooth scrolling */
+  width: 100vw; /* Set the width of the container to the viewport width */
+  height: 100vh; /* Set the height of the container to the viewport height */
+}
+
+.item {
+  flex: 0 0 100vh; /* Each item occupies the full width of the viewport */
+  min-height: 100vh; /* Each item takes the full viewport height */
+  scroll-snap-align: start; /* Snap each item to the start of the container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Example CSS for the HorizontalSlideshow component with fade animation */
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; /* Fade animation with 0.5s duration */
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  margin: 10px;
+}
